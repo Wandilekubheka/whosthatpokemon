@@ -49,5 +49,5 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <Stack />;
 }
