@@ -34,7 +34,7 @@ const index = () => {
     });
     setSearch("");
   };
-  if (loading) {
+  if (!loading) {
     return (
       <Progress.Circle
         className="flex-1 items-center justify-center"

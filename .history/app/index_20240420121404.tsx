@@ -1,15 +1,17 @@
 import {
   Text,
+  ActivityIndicator,
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, SearchBar } from "@rneui/themed";
 import { router } from "expo-router";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import * as Progress from "react-native-progress";
 
 const index = () => {
   const [search, setSearch] = useState("");
@@ -34,15 +36,6 @@ const index = () => {
     });
     setSearch("");
   };
-  if (loading) {
-    return (
-      <Progress.Circle
-        className="flex-1 items-center justify-center"
-        size={50}
-        indeterminate={true}
-      />
-    );
-  }
   return (
     <KeyboardAvoidingView className="flex-1 items-center justify-center bg-neutral-800 px-3 pt-10">
       <StatusBar style="light" />

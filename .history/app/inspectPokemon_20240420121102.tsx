@@ -1,12 +1,18 @@
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  Modal,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Stack, router, useGlobalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign } from "@expo/vector-icons";
 import { SvgUri } from "react-native-svg";
+import { Button } from "@rneui/themed";
 import Stats from "@/components/Stats";
-import { StatusBar } from "expo-status-bar";
-import * as Progress from "react-native-progress";
 
 const InspectPokemon = () => {
   const { search } = useGlobalSearchParams();
@@ -46,7 +52,6 @@ const InspectPokemon = () => {
   if (!loading) {
     return (
       <SafeAreaView className="flex-1 bg-neutral-800 px-3 ">
-        <StatusBar style="light" />
         <Stack.Screen
           options={{
             headerStyle: { backgroundColor: "rgb(38,38,38)" },
@@ -59,7 +64,7 @@ const InspectPokemon = () => {
 
             headerRight: () => (
               <TouchableOpacity
-                className=" p-3"
+                className=" p-5"
                 onPress={() => setLiked(!liked)}
               >
                 <AntDesign
@@ -107,13 +112,7 @@ const InspectPokemon = () => {
       </SafeAreaView>
     );
   }
-  return (
-    <Progress.Circle
-      className="flex-1 items-center justify-center"
-      size={50}
-      indeterminate={true}
-    />
-  );
+  return <ActivityIndicator className="flex-1 items-center justify-center" />;
 };
 
 export default InspectPokemon;

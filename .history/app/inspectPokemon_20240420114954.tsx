@@ -1,12 +1,18 @@
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  Modal,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Stack, router, useGlobalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign } from "@expo/vector-icons";
 import { SvgUri } from "react-native-svg";
+import { Button } from "@rneui/themed";
 import Stats from "@/components/Stats";
-import { StatusBar } from "expo-status-bar";
-import * as Progress from "react-native-progress";
 
 const InspectPokemon = () => {
   const { search } = useGlobalSearchParams();
@@ -15,7 +21,6 @@ const InspectPokemon = () => {
   const [stats, setStats] = useState([]);
   const [desc, setDesc] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [liked, setLiked] = useState(false);
   useEffect(() => {
     fetchData();
   }, [loading]);
@@ -46,7 +51,6 @@ const InspectPokemon = () => {
   if (!loading) {
     return (
       <SafeAreaView className="flex-1 bg-neutral-800 px-3 ">
-        <StatusBar style="light" />
         <Stack.Screen
           options={{
             headerStyle: { backgroundColor: "rgb(38,38,38)" },
@@ -58,14 +62,11 @@ const InspectPokemon = () => {
             headerTitleAlign: "center",
 
             headerRight: () => (
-              <TouchableOpacity
-                className=" p-3"
-                onPress={() => setLiked(!liked)}
-              >
+              <TouchableOpacity>
                 <AntDesign
                   name="heart"
                   size={24}
-                  color={liked ? "red" : "rgba(255,255,255,0.3)"}
+                  color="rgba(255,255,255,0.3)"
                 />
               </TouchableOpacity>
             ),
@@ -89,12 +90,11 @@ const InspectPokemon = () => {
             <Text className="text-white font-sInter text-md text-center mt-10">
               {desc}
             </Text>
-            <View className="flex-1 items-center justify-center">
-              <TouchableOpacity onPress={() => setShowModal(!showModal)}>
-                <Text className="p-5 text-red-600 font-sInter text-xl text-center">
-                  Stats
-                </Text>
-              </TouchableOpacity>
+            <View className="flex-1 items-center">
+              <Button
+                title={"Stats"}
+                onPress={() => setShowModal(!showModal)}
+              />
             </View>
           </>
         ) : (
@@ -107,13 +107,7 @@ const InspectPokemon = () => {
       </SafeAreaView>
     );
   }
-  return (
-    <Progress.Circle
-      className="flex-1 items-center justify-center"
-      size={50}
-      indeterminate={true}
-    />
-  );
+  return <ActivityIndicator className="flex-1 items-center justify-center" />;
 };
 
 export default InspectPokemon;

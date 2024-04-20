@@ -1,15 +1,8 @@
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TextInput,
-} from "react-native";
+import { Text, ActivityIndicator, View, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, SearchBar } from "@rneui/themed";
 import { router } from "expo-router";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { StatusBar } from "expo-status-bar";
-import * as Progress from "react-native-progress";
 
 const index = () => {
   const [search, setSearch] = useState("");
@@ -32,38 +25,17 @@ const index = () => {
       pathname: "/inspectPokemon",
       params: { search: search },
     });
-    setSearch("");
   };
-  if (loading) {
-    return (
-      <Progress.Circle
-        className="flex-1 items-center justify-center"
-        size={50}
-        indeterminate={true}
-      />
-    );
-  }
   return (
-    <KeyboardAvoidingView className="flex-1 items-center justify-center bg-neutral-800 px-3 pt-10">
-      <StatusBar style="light" />
-
+    <SafeAreaView className="flex-1 bg-neutral-800 px-3 pt-10">
       <Text className=" font-bInter text-4xl pr-3 text-white pb-5">
         What Pokemon are you looking for?
       </Text>
-      <View className=" flex-row w-full px-4 items-center border-white border justify-between">
-        <TextInput
-          placeholder="Search For Pokemon"
-          className=" flex-1 py-5 text text-white font-Inter"
-          value={search}
-          onChangeText={setSearch}
-          placeholderTextColor={"white"}
-        />
-        {search.length > 0 && (
-          <TouchableOpacity onPress={() => searchPokemon(search)}>
-            <AntDesign name="arrowright" size={24} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
+      <SearchBar
+        value={search}
+        onChangeText={(text) => setSearch(text)}
+        placeholder="search Pokemon"
+      />
       {search.length > 0 &&
         data.map(
           (data_: string) =>
@@ -77,7 +49,8 @@ const index = () => {
               </TouchableOpacity>
             )
         )}
-    </KeyboardAvoidingView>
+      <Button onPress={() => searchPokemon(search)} title={"search"} />
+    </SafeAreaView>
   );
 };
 

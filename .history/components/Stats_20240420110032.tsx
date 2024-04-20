@@ -21,10 +21,7 @@ const Stats = ({ isVisible, onClose, stats }: Props) => {
         </View>
         <View className=" items-center justify-evenly flex-1">
           {stats.map((stat) => (
-            <View
-              key={stat.stat.name}
-              className="flex-1 flex-row justify-between  w-full px-10 "
-            >
+            <View className="flex-1 flex-row justify-between  w-full px-10 ">
               <Text className="text-white font-sInter text-md text-center ">
                 {stat.stat.name}
               </Text>

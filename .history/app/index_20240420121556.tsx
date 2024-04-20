@@ -34,14 +34,8 @@ const index = () => {
     });
     setSearch("");
   };
-  if (loading) {
-    return (
-      <Progress.Circle
-        className="flex-1 items-center justify-center"
-        size={50}
-        indeterminate={true}
-      />
-    );
+  if (!loading) {
+    return <Progress.CircleSnail color={["red", "green", "blue"]} />;
   }
   return (
     <KeyboardAvoidingView className="flex-1 items-center justify-center bg-neutral-800 px-3 pt-10">
