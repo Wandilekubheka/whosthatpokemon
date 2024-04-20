@@ -71,7 +71,7 @@ const InspectPokemon = () => {
             headerRight: () => (
               <TouchableOpacity
                 className=" p-3"
-                onPress={() => handleLikeButton(search)}
+                onPress={() => setLiked(!liked)}
               >
                 <AntDesign
                   name="heart"

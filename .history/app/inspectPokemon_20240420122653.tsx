@@ -22,14 +22,6 @@ const InspectPokemon = () => {
     fetchData();
   }, [loading]);
 
-  const handleLikeButton = (name: string) => {
-    if (pokemon.includes(name)) {
-      removePokemon(name);
-    } else {
-      addPokemon(name);
-    }
-  };
-
   const fetchData = async () => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${search}`).then((res) => {
       if (res.status !== 200) {
@@ -71,14 +63,12 @@ const InspectPokemon = () => {
             headerRight: () => (
               <TouchableOpacity
                 className=" p-3"
-                onPress={() => handleLikeButton(search)}
+                onPress={() => setLiked(!liked)}
               >
                 <AntDesign
                   name="heart"
                   size={24}
-                  color={
-                    pokemon.includes(search) ? "red" : "rgba(255,255,255,0.3)"
-                  }
+                  color={liked ? "red" : "rgba(255,255,255,0.3)"}
                 />
               </TouchableOpacity>
             ),
