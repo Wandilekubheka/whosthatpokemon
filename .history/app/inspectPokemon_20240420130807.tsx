@@ -23,17 +23,15 @@ const InspectPokemon = () => {
   }, [loading]);
 
   const handleLikeButton = (name: string, image: string) => {
-    const pokemonNames = pokemon.map((item) => item.name);
-    console.log(pokemonNames);
+    console.log(pokemon);
 
     const pokemon_ = {
       name: name,
       image: image,
     };
-    // console.log(pokemon, "this is the pokemon list ");
-    // console.log(pokemon_, "this is the new pokemon ");
+    if (pokemon.includes(pokemon_)) {
+      console.log("sdasd");
 
-    if (pokemonNames.includes(name)) {
       removePokemon(pokemon_);
     } else {
       addPokemon(pokemon_);

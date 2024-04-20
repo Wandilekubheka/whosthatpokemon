@@ -10,11 +10,9 @@ const useLikes = create<Props>((set) => ({
   addPokemon: (pokemon_Object) =>
     set((state) => ({ pokemon: [...state.pokemon, pokemon_Object] })),
   removePokemon: (pokemon_Object) => {
-    set((state) => ({
-      pokemon: state.pokemon.filter(
-        (pokemon_) => pokemon_Object.name !== pokemon_.name
-      ),
-    }));
+    // set((state) => ({
+    //   pokemon: state.pokemon.filter((pokemon_) => pokemon_Object !== pokemon_),
+    // }));
   },
 }));
 

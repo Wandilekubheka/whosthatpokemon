@@ -33,7 +33,7 @@ const InspectPokemon = () => {
     // console.log(pokemon, "this is the pokemon list ");
     // console.log(pokemon_, "this is the new pokemon ");
 
-    if (pokemonNames.includes(name)) {
+    if (pokemon.includes(pokemon_)) {
       removePokemon(pokemon_);
     } else {
       addPokemon(pokemon_);

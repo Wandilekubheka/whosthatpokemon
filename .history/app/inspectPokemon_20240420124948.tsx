@@ -23,17 +23,13 @@ const InspectPokemon = () => {
   }, [loading]);
 
   const handleLikeButton = (name: string, image: string) => {
-    const pokemonNames = pokemon.map((item) => item.name);
-    console.log(pokemonNames);
+    console.log(pokemon);
 
     const pokemon_ = {
       name: name,
       image: image,
     };
-    // console.log(pokemon, "this is the pokemon list ");
-    // console.log(pokemon_, "this is the new pokemon ");
-
-    if (pokemonNames.includes(name)) {
+    if (pokemon.includes(name)) {
       removePokemon(pokemon_);
     } else {
       addPokemon(pokemon_);
@@ -81,21 +77,17 @@ const InspectPokemon = () => {
             headerRight: () => (
               <TouchableOpacity
                 className=" p-3"
-                onPress={() => {
+                onPress={() =>
                   handleLikeButton(
                     search,
                     data.sprites.other.dream_world.front_default
-                  );
-                }}
+                  )
+                }
               >
                 <AntDesign
                   name="heart"
                   size={24}
-                  color={
-                    pokemon.filter((item) => item.name === search).length !== 0
-                      ? "red"
-                      : "rgba(255,255,255,0.3)"
-                  }
+                  color={pokemon.name ? "red" : "rgba(255,255,255,0.3)"}
                 />
               </TouchableOpacity>
             ),
