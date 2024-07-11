@@ -34,11 +34,8 @@ To get started with the project, follow these steps:
    npm install
    ```
 
-4. **Set up the Pokémon API:**
-   - Ensure you have access to the Pokémon API.
-   - You might need to configure an `.env` file to store your API key if necessary.
 
-5. **Run the project:**
+4. **Run the project:**
    ```bash
    npx start
    ```
